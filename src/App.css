@@ -1,0 +1,74 @@
+/* Primary Color: Used for buttons, links, etc. */
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text-color);
+}
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+:root {
+  --primary-color: #007bff; /* A vibrant blue for main actions */
+  --secondary-color: #6c757d; /* A subtle gray for secondary elements */
+  --accent-color: #ffc107; /* A bright yellow for alerts or highlights */
+  --text-color: #343a40; /* Dark gray for main text */
+  --light-bg: #f8f9fa; /* Light background color */
+   --whatsapp-color: #25D366;
+  --instagram-color: #E1306C;
+  --linkedin-color: #0A66C2;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+.bg-primary, .btn-primary {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+/* Secondary Color: Used for backgrounds or other elements */
+.bg-secondary, .btn-secondary {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+
+/* Text colors */
+.text-primary {
+  color: #007bff !important;
+}
+.my-5 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.job-card {
+  min-height: 250px; /* Adjust this value as needed */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate__fadeIn {
+    animation: fadeIn 1.5s ease-in-out;
+}
+/* Change icon color on hover */
+.social-icon-link:hover svg {
+  color: var(--whatsapp-color); /* This will be overridden by specific rules */
+}
+
+/* Specific hover colors for each social media icon */
+.social-icon-link.whatsapp:hover svg {
+  color: var(--whatsapp-color);
+}
+
+.social-icon-link.instagram:hover svg {
+  color: var(--instagram-color);
+}
+
+.social-icon-link.linkedin:hover svg {
+  color: var(--linkedin-color);
+}
