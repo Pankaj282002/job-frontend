@@ -20,7 +20,7 @@ const AdminPanel = () => {
 
     const fetchJobs = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/jobs');
+            const response = await fetch('https://job-backend-49bv.onrender.com/api/jobs');
             if (!response.ok) {
                 throw new Error('Failed to fetch jobs');
             }
@@ -49,7 +49,7 @@ const AdminPanel = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/jobs', {
+            const response = await fetch('https://job-backend-49bv.onrender.com/api/jobs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const AdminPanel = () => {
                 alert('You must be logged in to delete a job.');
                 return;
             }
-                const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+                const response = await fetch(`https://job-backend-49bv.onrender.com/api/jobs/${jobId}`, {
                     method: 'DELETE',
                     headers: {
                         'x-auth-token': token

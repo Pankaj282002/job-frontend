@@ -14,7 +14,7 @@ function JobDashboard() {
     const fetchJobs = async () => {
         try {
             const queryParams = new URLSearchParams(filters).toString();
-            const response = await fetch(`http://localhost:5000/api/jobs?${queryParams}`);
+            const response = await fetch(`https://job-backend-49bv.onrender.com/api/jobs?${queryParams}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
