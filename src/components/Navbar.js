@@ -14,7 +14,7 @@ const AppNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
-                        <Nav.Link href="https://wa.me/" target="_blank" className="social-icon-link whatsapp">
+                        <Nav.Link href="https://chat.whatsapp.com/EfdlfYQypNHDAJkqVw4UXR" target="_blank" className="social-icon-link whatsapp">
                             <FaWhatsapp size={24} />
                         </Nav.Link>
                         <Nav.Link href="https://www.instagram.com/job_linkers0/" target="_blank" className="social-icon-link instagram">
