@@ -17,7 +17,7 @@ const AppNavbar = () => {
                         <Nav.Link href="https://wa.me/" target="_blank" className="social-icon-link whatsapp">
                             <FaWhatsapp size={24} />
                         </Nav.Link>
-                        <Nav.Link href="https://www.instagram.com/" target="_blank" className="social-icon-link instagram">
+                        <Nav.Link href="https://www.instagram.com/job_linkers0/" target="_blank" className="social-icon-link instagram">
                             <FaInstagram size={24} />
                         </Nav.Link>
                         <Nav.Link href="https://www.linkedin.com/in/" target="_blank" className="social-icon-link linkedin">
