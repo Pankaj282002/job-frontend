@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 function App() {
     return (
         <Router>
-            <AppNavbar />
+            
             <div style={{ minHeight: '80vh' }}>
                 <Routes>
                     <Route path="/" element={<JobDashboard />} />
