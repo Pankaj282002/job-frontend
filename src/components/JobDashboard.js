@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+// Path to the logo in the public directory
+const logoPath = '/logo192.png';
+
 // CRITICAL: Bootstrap CSS imported via CDN URL in the <style> block below 
 const bootstrapCDN = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
 
@@ -138,6 +141,7 @@ function JobDashboard() {
 
             while (attempts < maxRetries) {
                 try {
+                    // Using exponential backoff for retries
                     response = await fetch(`https://job-backend-49bv.onrender.com/api/jobs?${queryParams}`);
                     if (response.ok) {
                         break;
@@ -190,8 +194,19 @@ function JobDashboard() {
             <Navbar className="bg-white shadow-sm" expand="md" sticky="top">
                 <Container>
                     <Navbar.Brand className="color-primary fw-bold" style={{ fontSize: '1.5rem' }}>
-                        <span className="me-2" role="img" aria-label="Logo">🔗</span>
-                        JobLinker
+                        {/* REPLACED EMOJI WITH PNG LOGO */}
+                        <img 
+                            src={logoPath} // Path: /logo192.png
+                            alt="JobVista Logo" 
+                            height="30" 
+                            className="d-inline-block align-top me-2 rounded" 
+                            onError={(e) => {
+                                e.target.onerror = null; // Prevents infinite loop
+                                // Fallback placeholder image
+                                e.target.src = 'https://placehold.co/30x30/173f5f/ffffff?text=JV'; 
+                            }}
+                        />
+                        JobVista
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -214,7 +229,7 @@ function JobDashboard() {
             </div>
 
             <Container>
-                {/* NEW: Full-width Filter Bar (Moved from Sidebar to Top) */}
+                {/* Full-width Filter Bar */}
                 <Row className="mb-4">
                     <Col lg={12}>
                         <div className="filter-bar">
@@ -257,13 +272,12 @@ function JobDashboard() {
                     </Col>
                 </Row>
                 
-                {/* Job Cards (Now Full Width - lg=12) */}
+                {/* Job Cards */}
                 <Row>
                     <Col lg={12}>
                         <h3 className="fw-bold mb-4">Latest Opportunities ({jobs.length})</h3>
                         
                         {/* Job Listings Grid (FIXED HEIGHT) */}
-                        {/* Grid size changed to 3 columns on desktop (lg=4 per card) */}
                         <Row className="g-4 d-flex">
                             {jobs.length > 0 ? (
                                 jobs.map(job => (
