@@ -48,7 +48,7 @@ const customStyles = `
         background-color: #ffffff;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
         transition: transform 0.2s, box-shadow 0.2s;
-        padding: 0; /* Remove default padding for better control */
+        padding: 0; 
     }
     
     .job-card:hover {
@@ -64,11 +64,11 @@ const customStyles = `
         padding: 1.5rem;
     }
 
-    /* Job Title Enhancement (18pt-24pt) */
+    /* Job Title Enhancement */
     .job-card-title-custom {
         color: #173f5f;
         font-weight: 800;
-        font-size: 1.25rem; /* ~20px */
+        font-size: 1.25rem; 
         margin-bottom: 0.5rem;
         line-height: 1.2;
     }
@@ -93,20 +93,12 @@ const customStyles = `
         margin-bottom: 3px;
     }
 
-    /* Sidebar Filter Card */
-    .filter-card {
-        border: none;
+    /* Filter Bar Styling (Now horizontal) */
+    .filter-bar {
+        background-color: #ffffff;
         border-radius: 12px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Small screens (Mobile) adjustments */
-    @media (max-width: 767.98px) {
-        .hero-section { padding: 2rem 0; }
-        .hero-title { font-size: 2rem; }
-        .hero-tagline { font-size: 1.1rem; }
+        padding: 1.5rem;
     }
 `;
 
@@ -118,7 +110,6 @@ const formatQualification = (qualification) => {
     // and clean up extra spaces/typos like "Devloper"
     let points = qualification.replace(/devloper/ig, 'Developer').split(/[\.;,]\s*/).filter(p => p.trim() !== '');
     
-    // If the split didn't yield clear points, just treat the whole thing as one point
     if (points.length < 2) {
         return <li>{points[0] || qualification.replace(/devloper/ig, 'Developer')}</li>;
     }
@@ -138,7 +129,6 @@ function JobDashboard() {
     });
 
     const fetchJobs = async () => {
-        // ... (fetch logic with exponential backoff remains the same)
         try {
             const queryParams = new URLSearchParams(filters).toString();
             let response = null;
@@ -224,53 +214,56 @@ function JobDashboard() {
             </div>
 
             <Container>
-                {/* Main Content Row: Sidebar (Filters) and Job List */}
-                <Row>
-                    {/* Sidebar: Filters (Moved to the left for better space utilization) */}
-                    <Col md={12} lg={3} className="mb-4">
-                        <Card className="filter-card">
-                            <Card.Body>
-                                <h5 className="fw-bold color-primary mb-4">Filter Jobs</h5>
-                                <Form>
-                                    <Form.Group className='mb-3'>
-                                        <Form.Label className="fw-medium">Job Role</Form.Label>
+                {/* NEW: Full-width Filter Bar (Moved from Sidebar to Top) */}
+                <Row className="mb-4">
+                    <Col lg={12}>
+                        <div className="filter-bar">
+                            <h5 className="fw-bold color-primary mb-3">Filter Jobs</h5>
+                            <Form>
+                                {/* Filters are laid out horizontally on large screens, stacking on mobile */}
+                                <Row>
+                                    <Col md={4} className='mb-3 mb-md-0'>
+                                        <Form.Label className="fw-medium visually-hidden">Job Role</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="e.g., Software Developer"
+                                            placeholder="Search by Job Role (e.g., Developer)"
                                             name="job_role"
                                             value={filters.job_role}
                                             onChange={handleFilterChange}
                                         />
-                                    </Form.Group>
-                                    <Form.Group className='mb-3'>
-                                        <Form.Label className="fw-medium">Location</Form.Label>
+                                    </Col>
+                                    <Col md={4} className='mb-3 mb-md-0'>
+                                        <Form.Label className="fw-medium visually-hidden">Location</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="e.g., Pune"
+                                            placeholder="Filter by Location (e.g., Pune)"
                                             name="location"
                                             value={filters.location}
                                             onChange={handleFilterChange}
                                         />
-                                    </Form.Group>
-                                    <Form.Group className='mb-3'>
-                                        <Form.Label className="fw-medium">Type</Form.Label>
+                                    </Col>
+                                    <Col md={4} className='mb-3 mb-md-0'>
+                                        <Form.Label className="fw-medium visually-hidden">Type</Form.Label>
                                         <Form.Select name="type" value={filters.type} onChange={handleFilterChange}>
-                                            <option value="">All Types</option>
+                                            <option value="">All Types (Full/Part-time)</option>
                                             <option value="Full-time">Full-time</option>
                                             <option value="Part-time">Part-time</option>
                                             <option value="Contract">Contract</option>
                                         </Form.Select>
-                                    </Form.Group>
-                                </Form>
-                            </Card.Body>
-                        </Card>
+                                    </Col>
+                                </Row>
+                            </Form>
+                        </div>
                     </Col>
-
-                    {/* Main Content: Job Cards */}
-                    <Col md={12} lg={9}>
+                </Row>
+                
+                {/* Job Cards (Now Full Width - lg=12) */}
+                <Row>
+                    <Col lg={12}>
                         <h3 className="fw-bold mb-4">Latest Opportunities ({jobs.length})</h3>
                         
                         {/* Job Listings Grid (FIXED HEIGHT) */}
+                        {/* Grid size changed to 3 columns on desktop (lg=4 per card) */}
                         <Row className="g-4 d-flex">
                             {jobs.length > 0 ? (
                                 jobs.map(job => (
