@@ -27,7 +27,7 @@ const AppNavbar = () => {
                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
                            <Navbar.Collapse id="basic-navbar-nav">
                                <Nav className="ms-auto">
-                                   <Nav.Link href="#" className="color-primary fw-medium">Dashboard</Nav.Link>
+                                   <Nav.Link href="https://job-frontend-ce4s.vercel.app/" className="color-primary fw-medium">Dashboard</Nav.Link>
                                    <Nav.Link href="#">About</Nav.Link>
                                    <Nav.Link href="#">Contact</Nav.Link>
                                    <Nav.Link href="#">Profile</Nav.Link>
